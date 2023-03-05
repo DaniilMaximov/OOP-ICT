@@ -1,7 +1,6 @@
-﻿using OOP_ICT;
-using OOP_ICT.Interfaces;
-using OOP_ICT.Deckaccess;
+﻿using OOP_ICT.Interfaces;
 
+namespace OOP_ICT.Models;
 public class Dealer : IDealer
 {
 

@@ -1,5 +1,4 @@
-﻿namespace OOP_ICT.Deckaccess;
-
+﻿namespace OOP_ICT.Models;
 public class CardDeck
 {
     /// <summary>

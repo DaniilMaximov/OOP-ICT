@@ -1,4 +1,4 @@
-﻿using OOP_ICT;
+﻿using OOP_ICT.Models;
 
 public class Program
 {
