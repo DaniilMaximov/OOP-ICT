@@ -17,16 +17,17 @@ public class CardDeck
     /// </summary>
     
     private List<Card> _cards;
+    private const int CardsAmount = 52;
 
     internal CardDeck()
     {
         _cards = DefaultDeckCreating();
     }
 
-    private List<Card> DefaultDeckCreating() //Создание не размешанной колоды.
+    private List<Card> DefaultDeckCreating()
     {
-        const int cardsAmount = 52;
-        var defaultDeck = new List<Card>(cardsAmount);
+        
+        var defaultDeck = new List<Card>(CardsAmount);
         foreach (CardRank rank in Enum.GetValues(typeof(CardRank)))
         {
             foreach (CardSuit suit in Enum.GetValues(typeof(CardSuit)))
@@ -49,7 +50,7 @@ public class CardDeck
     public void ShowCardDeck()
     {
         Console.WriteLine("______ All cards list ______");
-        _cards.ForEach(i => Console.WriteLine(i.CardInfo()));
+        _cards.ForEach(i => Console.WriteLine(i));
         Console.WriteLine("_____________________________");
     }
 }
