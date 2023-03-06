@@ -17,7 +17,7 @@ public class Card
         _suit = suit;
     }
 
-    public string CardInfo()
+    public override string ToString()
     {
         return ($"rank - {_rank} | suit - {_suit}");
     }
