@@ -1,9 +1,9 @@
 ﻿using OOP_ICT.Interfaces;
 
-namespace OOP_ICT.Models;
-public class Dealer : IDealer
-{
+namespace OOP_ICT;
 
+public class Dealer: IDealer
+{
     /// <summary>
     /// Класс Дилер
     ///В конструкторе При создании нового дилера
@@ -21,40 +21,22 @@ public class Dealer : IDealer
     /// Вызывается из класса Колоды, т к с колодой можно
     /// взаимодействоать только через дилера
     /// </summary>
-
     
-    private CardDeck _cardDeck;
-
-    public void InitializeCardDeck()
-    {
-        _cardDeck = new CardDeck();
-    }
+    private CardDeck _cardDeck = new CardDeck();
 
     public void CreateShuffledUserDeck()
     {
-        int n = _cardDeck.GetCardList.Count / 2;
-        var shuffled = new List<Card>();
-        for (int i = 0; i < n; i++)
-        {
-            shuffled.Add(_cardDeck.GetCardList[i]);
-            shuffled.Add(_cardDeck.GetCardList[i + n]);
-        }
-
-        if (_cardDeck.GetCardList.Count % 2 != 0)
-        {
-            shuffled.Add(_cardDeck.GetCardList[_cardDeck.GetCardList.Count - 1]);
-        }
-
-        _cardDeck.GetCardList = shuffled;
+        var shuffled = ShuffleAlghorithm.Shuffle(_cardDeck.GetCardList);
+        _cardDeck.Add(shuffled);
     }
 
-    public List<Card> GetCardListFromDealer
+    public IReadOnlyList<Card> GetCardListFromDealer
     {
         get { return _cardDeck.GetCardList; }
     }
 
-    public void ShowCardDeck()
+    public string ShowCardDeck()
     {
-        _cardDeck.ShowCardDeck();
+        return _cardDeck.ToString();
     }
 }
