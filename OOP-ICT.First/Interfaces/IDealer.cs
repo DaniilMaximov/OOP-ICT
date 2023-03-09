@@ -2,6 +2,5 @@
 
 public interface IDealer
 {
-    void InitializeCardDeck();
     void CreateShuffledUserDeck();
 }

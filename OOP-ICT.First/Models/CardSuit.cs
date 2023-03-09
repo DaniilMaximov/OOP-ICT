@@ -1,5 +1,4 @@
-﻿namespace OOP_ICT.Models;
-
+﻿namespace OOP_ICT;
 public enum CardSuit
 {
     /// <summary>

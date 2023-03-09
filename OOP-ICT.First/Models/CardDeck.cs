@@ -1,4 +1,4 @@
-﻿namespace OOP_ICT.Models;
+﻿namespace OOP_ICT;
 public class CardDeck
 {
     /// <summary>
@@ -9,8 +9,6 @@ public class CardDeck
     /// 
     /// есть публичный getter - вернет список карт
     ///
-    /// и internal setter, чтобы кода Дилер перемешает колоду
-    /// можно было обновить колоду изменениями
     ///
     /// Ну и метод для вывода порядка и состава колоды
     /// ShowCardDeck
@@ -19,7 +17,7 @@ public class CardDeck
     private List<Card> _cards;
     private const int CardsAmount = 52;
 
-    internal CardDeck()
+    public CardDeck()
     {
         _cards = DefaultDeckCreating();
     }
@@ -40,17 +38,17 @@ public class CardDeck
     }
 
 
-    public List<Card> GetCardList
+    public List<Card> GetCardList() =>  _cards;
+    
+    public void AddCardList(List<Card> cards)
     {
-        get { return _cards; }
-        internal set { _cards = value; }
+        _cards = cards;
+    }
+    
+    public override string ToString()
+    {
+        string cardsList = string.Join("\n", _cards.Select(card => card.ToString()));
+        return $"______ All cards list ______\n{cardsList}\n_____________________________";
     }
 
-
-    public void ShowCardDeck()
-    {
-        Console.WriteLine("______ All cards list ______");
-        _cards.ForEach(i => Console.WriteLine(i));
-        Console.WriteLine("_____________________________");
-    }
 }

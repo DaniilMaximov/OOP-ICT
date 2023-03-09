@@ -1,4 +1,4 @@
-﻿namespace OOP_ICT.Models;
+﻿namespace OOP_ICT;
 
 public class Card
 {
@@ -10,11 +10,21 @@ public class Card
     
     private readonly CardRank _rank;
     private readonly CardSuit _suit;
+    private Card _card;
 
     public Card(CardRank rank, CardSuit suit)
     {
         _rank = rank;
         _suit = suit;
+    }
+
+    public CardRank GetRank()
+    {
+        return this._rank;
+    }
+    public CardSuit GetSuit()
+    {
+        return this._suit;
     }
 
     public override string ToString()

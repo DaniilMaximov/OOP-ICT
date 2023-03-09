@@ -23,16 +23,17 @@ public class Dealer: IDealer
     /// </summary>
     
     private CardDeck _cardDeck = new CardDeck();
+    
 
     public void CreateShuffledUserDeck()
     {
-        var shuffled = ShuffleAlghorithm.Shuffle(_cardDeck.GetCardList);
-        _cardDeck.Add(shuffled);
+        var shuffled = ShuffleAlghorithm.Shuffle(_cardDeck.GetCardList());
+        _cardDeck.AddCardList(shuffled);
     }
 
     public IReadOnlyList<Card> GetCardListFromDealer
     {
-        get { return _cardDeck.GetCardList; }
+        get { return _cardDeck.GetCardList(); }
     }
 
     public string ShowCardDeck()

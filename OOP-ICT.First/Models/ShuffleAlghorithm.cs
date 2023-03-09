@@ -1,8 +1,6 @@
-﻿using OOP_ICT.Interfaces;
+﻿namespace OOP_ICT;
 
-namespace OOP_ICT;
-
-public class ShuffleAlghorithm: IShuffleAlghorithm
+public class ShuffleAlghorithm
 {
     public static List<Card> Shuffle(List<Card> cards)
     {
