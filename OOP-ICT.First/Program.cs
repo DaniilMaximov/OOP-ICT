@@ -5,9 +5,9 @@ public class Program
     public static void Main()
     {
         // Примеры использования
-        var card1 = new Card(0,0);
+        var card1 = new Card(0, 0);
         Console.WriteLine(card1);
-        
+
         var cardDeck1 = new CardDeck();
         Console.WriteLine(cardDeck1);
 

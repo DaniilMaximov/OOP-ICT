@@ -1,5 +1,4 @@
 ﻿using Xunit;
-using Xunit.Sdk;
 
 namespace OOP_ICT;
 
@@ -53,12 +52,12 @@ public class Tests
     {
         // Arrange
         var deck = new CardDeck();
-        var newDeck = new List<Card>()
+        var newDeck = new List<Card>
         {
-            new Card(CardRank.Ace, CardSuit.Clubs),
-            new Card(CardRank.Two, CardSuit.Diamonds),
-            new Card(CardRank.Three, CardSuit.Hearts),
-            new Card(CardRank.Four, CardSuit.Spades)
+            new(CardRank.Ace, CardSuit.Clubs),
+            new(CardRank.Two, CardSuit.Diamonds),
+            new(CardRank.Three, CardSuit.Hearts),
+            new(CardRank.Four, CardSuit.Spades)
         };
 
         // Act
@@ -112,10 +111,7 @@ public class Tests
 
         // Assert
         Assert.Equal(52, result.Count);
-        foreach (var card in result)
-        {
-            Assert.NotNull(card);
-        }
+        foreach (var card in result) Assert.NotNull(card);
     }
 
     [Fact]

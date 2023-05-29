@@ -1,8 +1,10 @@
-﻿using OOP_ICT.Interfaces;
+﻿using OOP_ICT.Second.Extensions;
+using OOP_ICT.Second.Interfaces;
+using OOP_ICT.Second.Models;
 
 namespace OOP_ICT;
 
-public class Dealer : IDealer
+public class Dealer : Player
 {
     /// <summary>
     ///     Класс Дилер
@@ -18,13 +20,19 @@ public class Dealer : IDealer
     /// </summary>
     private readonly CardDeck _cardDeck = new();
 
-    public IReadOnlyList<Card> GetCardListFromDealer => _cardDeck.GetCardList();
+    public IReadOnlyList<ICard> GetCardListFromDealer => _cardDeck.CardList;
 
 
     public void CreateShuffledUserDeck()
     {
-        var shuffled = ShuffleAlghorithm.Shuffle(_cardDeck.GetCardList());
-        _cardDeck.AddCardList(shuffled);
+        var shuffled = ShuffleAlgorithm.Shuffle(_cardDeck.CardList);
+        _cardDeck.CardList = shuffled;
+    }
+
+
+    public ICard DrawCard()
+    {
+        return _cardDeck.CardList.Pop();
     }
 
     public string ShowCardDeck()

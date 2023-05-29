@@ -3,7 +3,7 @@
 public enum CardRank
 {
     /// <summary>
-    /// enum для наименований карт
+    ///     enum для наименований карт
     /// </summary>
     Ace,
     King,
