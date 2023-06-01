@@ -20,8 +20,12 @@ public class Dealer : Player
     /// </summary>
     private readonly CardDeck _cardDeck = new();
 
-    public IReadOnlyList<ICard> GetCardListFromDealer => _cardDeck.CardList;
+    public Dealer()
+    {
+        CreateShuffledUserDeck();
+    }
 
+    public IReadOnlyList<ICard> GetCardListFromDealer => _cardDeck.CardList;
 
     public void CreateShuffledUserDeck()
     {

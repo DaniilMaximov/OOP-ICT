@@ -17,4 +17,9 @@ public class Card : ICard
     public ECardRank Rank { get; set; }
 
     public ECardSuit Suit { get; set; }
+    
+    public override string ToString()
+    {
+        return $"rank - {Rank} | suit - {Suit}";
+    }
 }

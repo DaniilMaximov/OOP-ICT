@@ -2,8 +2,6 @@
 
 public enum ECardRank
 {
-    
-    
     /// <summary>
     ///     enum для наименований карт
     /// </summary>
@@ -18,6 +16,6 @@ public enum ECardRank
     Six = 6,
     Five = 5,
     Four = 4,
-    Three = 3 ,
+    Three = 3,
     Two = 2
 }
