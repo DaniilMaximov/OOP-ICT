@@ -1,54 +1,50 @@
 ﻿using NUnit.Framework;
-using OOP_ICT.Second.Models;
-using OOP_ICT.Second.Interfaces;
-using System.Linq;
 
-namespace OOP_ICT.Second.Models.Tests
+namespace OOP_ICT.Second.Models.Tests;
+
+[TestFixture]
+public class CardDeckTests
 {
-    [TestFixture]
-    public class CardDeckTests
+    [Test]
+    public void CardDeck_InitializesWithDefaultDeck()
     {
-        [Test]
-        public void CardDeck_InitializesWithDefaultDeck()
+        // Act
+        var deck = new CardDeck();
+
+        // Assert
+        Assert.AreEqual(52, deck.GetCardList().Count);
+    }
+
+    [Test]
+    public void CardDeck_CanBeAssignedNewCardList()
+    {
+        // Arrange
+        var deck = new CardDeck();
+        var newCardList = new List<Card>
         {
-            // Act
-            var deck = new CardDeck();
+            new(CardRank.Ace, CardSuit.Hearts),
+            new(CardRank.King, CardSuit.Spades)
+        };
 
-            // Assert
-            Assert.AreEqual(52, deck.CardList.Count);
-        }
+        // Act
+        deck.AddCardList(newCardList);
 
-        [Test]
-        public void CardDeck_CanBeAssignedNewCardList()
-        {
-            // Arrange
-            var deck = new CardDeck();
-            var newCardList = new List<ICard>
-            {
-                new Card(ECardRank.Ace, ECardSuit.Hearts),
-                new Card(ECardRank.King, ECardSuit.Spades)
-            };
+        // Assert
+        Assert.AreEqual(2, deck.GetCardList().Count);
+    }
 
-            // Act
-            deck.CardList = newCardList;
+    [Test]
+    public void ToString_ReturnsExpectedString()
+    {
+        // Arrange
+        var deck = new CardDeck();
+        var expectedString = string.Join("\n", deck.GetCardList().Select(card => card.ToString()));
+        expectedString = $"______ All cards list ______\n{expectedString}\n_____________________________";
 
-            // Assert
-            Assert.AreEqual(2, deck.CardList.Count);
-        }
+        // Act
+        var resultString = deck.ToString();
 
-        [Test]
-        public void ToString_ReturnsExpectedString()
-        {
-            // Arrange
-            var deck = new CardDeck();
-            var expectedString = string.Join("\n", deck.CardList.Select(card => card.ToString()));
-            expectedString = $"______ All cards list ______\n{expectedString}\n_____________________________";
-
-            // Act
-            var resultString = deck.ToString();
-
-            // Assert
-            Assert.AreEqual(expectedString, resultString);
-        }
+        // Assert
+        Assert.AreEqual(expectedString, resultString);
     }
 }

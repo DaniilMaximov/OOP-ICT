@@ -1,113 +1,103 @@
-﻿using System.Globalization;
-
-namespace OOP_ICT.Second.Models;
+﻿using OOP_ICT;
+using OOP_ICT.Second.models.Player.Interfaces;
 
 public class BlackJackGame
 {
-    public readonly Dealer _dealer1 = new();
-    public List<Player> players = new();
-    public readonly List<string> winnerList = new();
-
     public BlackJackGame()
     {
-        _dealer1.Name = "Dealer";
+        Dealer1 = new NewDealer
+        {
+            Name = "Dealer"
+        };
+        WinnerList = new List<string>();
+        Bets = new List<IBet>();
+        Players = new List<IPlayer>();
     }
 
-    public object Players { get; set; }
+    public NewDealer Dealer1 { get; set; }
+    public List<string> WinnerList { get; }
+    public List<IPlayer> Players { get; }
+    public List<IBet> Bets { get; }
 
-    // 1. создаем играков с помощью New
-    // 2. затем создаем список играков
-    // присоединяем соданных игроков с помощью метода
-    // Диллер создает и мешает колоду.
-    // каждый игрок делает ставку (присваевает значению Bet сумму).
-    // 3. Диллер раздает  по 2 каждому играку в списке и одну себе
-    // 4. чтобы перейти на след шаг иргры все игроки дожны подтве-
-    // дить что они либо взяли карту либо остались при своих
-    // 5. Диллер начинает брать карты на автомате, пока у него не будет больше 17
-    // как только больше 17 то стоп. Если больше 21 сразу проигрышь
-    // 6. Подсчет очков и сравнение с диллером. 
-    // 7. Работа со ставками.
 
-    public void ShowCards()
+    public void AddPlayerToGame(IPlayer player)
     {
-        Console.WriteLine(_dealer1.ShowCardDeck());
-    }
-
-
-    public void AddPlayerToGame(Player player)
-    {
-        players.Add(player);
+        Players.Add(player);
     }
 
     public void GameFirsStep()
     {
-        foreach (var player in players)
+        foreach (var player in Players)
         {
-            // каждому игроку раздаются две карты
-            player.Cards.Add(_dealer1.DrawCard());
-            player.Cards.Add(_dealer1.DrawCard());
+            player.Cards.Add(Dealer1.DrawCard());
+            player.Cards.Add(Dealer1.DrawCard());
         }
 
-        _dealer1.Cards.Add(_dealer1.DrawCard());
+        Dealer1.Cards.Add(Dealer1.DrawCard());
     }
 
-    public bool MakingBetsCheck()
+    public void PlaceBet(IPlayer player, int amount)
     {
-        foreach (var player in players)
+        if (player.Cash < amount)
         {
-            if (player.Bet <= 0) return false;
-            ;
+            Console.WriteLine("Insufficient funds for bet");
+            return;
         }
 
-        return true;
+        var bet = BetFactory.CreateBet("BlackJack", player, amount);
+        player.Cash -= bet.Amount;
+        Bets.Add(bet);
     }
 
-    public Boolean EveryoneReadyCheck()
+    public int FindBetByPlayer(IPlayer player)
     {
-        foreach (var player in players)
-            if (player.Readiness == false)
-                return false;
+        foreach (var bet in Bets)
+            if (bet.Player == player)
+                return bet.Amount;
 
-        return true;
+        return 0;
     }
 
-    public void GetOneMoreCard(Player player)
+    public void GetOneMoreCard(IPlayer player)
     {
-        player.Cards.Add(_dealer1.DrawCard());
+        player.Cards.Add(Dealer1.DrawCard());
     }
 
-    public void DealerTakeCards()
+    public void DealerTakesCards()
     {
-        while (_dealer1.CardsSum() < 17) _dealer1.Cards.Add(_dealer1.DrawCard());
-        _dealer1.Cards.Add(_dealer1.DrawCard());
+        while (Dealer1.CardsSum() < 17) Dealer1.Cards.Add(Dealer1.DrawCard());
+        Dealer1.Cards.Add(Dealer1.DrawCard());
     }
 
     public List<string> GameEndScoring()
     {
-        foreach (var player in players)
-            if (((_dealer1.CardsSum() > 21) & (player.CardsSum() <= 21)) |
-                ((player.CardsSum() > _dealer1.CardsSum()) &
+        foreach (var player in Players)
+            if (((Dealer1.CardsSum() > 21) & (player.CardsSum() <= 21)) |
+                ((player.CardsSum() > Dealer1.CardsSum()) &
                  (player.CardsSum() <= 21) &
-                 (_dealer1.CardsSum() <= 21)))
+                 (Dealer1.CardsSum() <= 21)))
             {
-                player.Bet *= 2;
+                player.Cash += FindBetByPlayer(player) * 2;
                 Console.WriteLine(player.Name);
-                winnerList.Add(player.Name);
-            }
-            else
-            {
-                player.Bet = 0;
+                WinnerList.Add(player.Name);
             }
 
-        return winnerList;
+        Bets.Clear();
+        return WinnerList;
     }
 
-    public void ShowPlayers()
+    public void ShowCards()
     {
-        foreach (var p in players)
-        {
-            Console.WriteLine(p.Name);
-        }
+        Console.WriteLine(Dealer1.ShowCardDeck());
     }
-    
+
+    public string ShowWinnerList()
+    {
+        return "WINNERS ARE: " + string.Join(",", WinnerList);
+    }
+
+    public string ShowPlayers()
+    {
+        return "players: " + string.Join(",", Players);
+    }
 }

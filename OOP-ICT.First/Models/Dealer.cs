@@ -16,19 +16,19 @@ public class Dealer : IDealer
     ///     Метод ShowCardDeck, для просмотра карт в колоде
     ///     Вызывается из класса Колоды
     /// </summary>
-    private readonly CardDeck _cardDeck = new();
+    protected readonly CardDeck CardDeck = new();
 
-    public IReadOnlyList<Card> GetCardListFromDealer => _cardDeck.GetCardList();
+    public IReadOnlyList<Card> GetCardListFromDealer => CardDeck.GetCardList();
 
 
     public void CreateShuffledUserDeck()
     {
-        var shuffled = ShuffleAlghorithm.Shuffle(_cardDeck.GetCardList());
-        _cardDeck.AddCardList(shuffled);
+        var shuffled = ShuffleAlghorithm.Shuffle(CardDeck.GetCardList());
+        CardDeck.AddCardList(shuffled);
     }
 
     public string ShowCardDeck()
     {
-        return _cardDeck.ToString();
+        return CardDeck.ToString();
     }
 }
