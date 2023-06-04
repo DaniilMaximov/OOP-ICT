@@ -6,5 +6,9 @@
     &lt;TestId&gt;NUnit3x::FA02E33D-567B-4E72-A40F-AB9D0F36DC3A::net6.0::OOP_ICT.Tests.PlayerTests&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::FA02E33D-567B-4E72-A40F-AB9D0F36DC3A::net6.0::OOP_ICT.Tests.BlackJackGameTests&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::FA02E33D-567B-4E72-A40F-AB9D0F36DC3A::net6.0::OOP_ICT.Tests.DealerTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::FA02E33D-567B-4E72-A40F-AB9D0F36DC3A::net6.0::BetTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::50FD398D-9654-4E28-9F4E-8DF3A8DC7550::net6.0::OOP_ICT.Third.Tests.BankTests.BankServiceTests.Deposit_IncreasesPlayerBalance&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::50FD398D-9654-4E28-9F4E-8DF3A8DC7550::net6.0::OOP_ICT.Third.Tests.BankTests.BankServiceTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::50FD398D-9654-4E28-9F4E-8DF3A8DC7550::net6.0::OOP_ICT.Third.Tests.CasinoTests.CasinoTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
