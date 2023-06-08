@@ -8,4 +8,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\OOP-ICT.Second\OOP-ICT.Second.csproj" />
+      <ProjectReference Include="..\OOP-ICT.Third\OOP-ICT.Third.csproj" />
+    </ItemGroup>
+
 </Project>
